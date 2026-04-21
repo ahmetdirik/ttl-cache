@@ -1,3 +1,30 @@
-mkdir src\ttl_cache
-mkdir tests
-New-Item src\ttl_cache\__init__.py, src\ttl_cache\cache.py, tests\__init__.py, tests\test_cache.py, pyproject.toml -ItemType File
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ttl-cache"
+version = "0.1.0"
+description = "Thread-safe in-memory cache with TTL and LRU eviction"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "Ahmet Alptuğ Dirik"}]
+license = {text = "MIT"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "pytest-cov>=4.0", "ruff>=0.1.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
